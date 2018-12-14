@@ -1,0 +1,15 @@
+[Unit]
+Description=Netpips Server
+
+[Service]
+WorkingDirectory=/var/netpips/server
+ExecStart=/usr/bin/dotnet /var/netpips/server/Netpips.dll
+Restart=always
+RestartSec=60  # Restart service after 60 seconds if dotnet service crashes
+SyslogIdentifier=dotnet-example
+User=netpips-deployment
+Environment=ASPNETCORE_ENVIRONMENT={{env}}
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
