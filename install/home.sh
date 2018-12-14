@@ -25,6 +25,7 @@ mkdir -p /home/$user/medialibrary/TV\ Shows
 mkdir -p /home/$user/medialibrary/Movies
 mkdir -p /home/$user/medialibrary/Others
 mkdir -p /home/$user/medialibrary/Music
+mkdir -p /home/$user/medialibrary/Podcasts
 
 chmod 777 -R /home/$user
 chown -R "$user:$user" /home/$user/
