@@ -14,8 +14,8 @@ log_failure() {
 
 
 assert_eq() {
-    local expected="$1"
-    local actual="$2"
+    local expected="$2"
+    local actual="$1"
     local msg
 
     if [ "$#" -ge 3 ]; then

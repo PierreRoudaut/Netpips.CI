@@ -1,0 +1,14 @@
+aria2
+bash-completion
+emacs
+git
+htop
+jq
+mediainfo
+nginx
+transmission-cli
+transmission-common
+transmission-daemon
+tree
+openjdk-8-jdk
+openjdk-8-jre
