@@ -16,9 +16,11 @@ fi
 BRANCH=$1
 srvc='netpips-server'
 
-rm -rf Netpips.Server
-# todo: optimize reclone of Netpips.Server
-git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' && cd Netpips.Server/Netpips
+if [ ! -d /tmp/Netpips.Server ]; then
+    git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server
+fi
+cd /tmp/Netpips.Server/Netpips
+git pull
 git checkout $BRANCH
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
@@ -26,6 +28,4 @@ dotnet ef database update
 dotnet publish -c 'Release' -o '/var/netpips/server'
 sudo service $srvc start
 sudo service $srvc status
-cd ../../ && rm -rf Netpips.Server
-# update deployment log
-
+date >> /tmp/deployments.log
