@@ -26,9 +26,6 @@ rm -f /etc/nginx/sites-enabled/$conf
 cat $conf.tmpl | sed s/{{host}}/$host/g > /etc/nginx/sites-available/$conf
 ln -s /etc/nginx/sites-available/$conf /etc/nginx/sites-enabled/$conf
 
-nginx -t
-nginx -s reload || true
-
 sudo service nginx start
 service nginx status
 
@@ -44,5 +41,6 @@ if [ "$?" -ne 0 ]; then
 fi
 
 certbot --nginx --domains $host --non-interactive --agree-tos -m $email
+nginx -s reload || true
 service nginx status
 service netpips-server restart || true
