@@ -17,14 +17,16 @@ BRANCH=$1
 srvc='netpips-server'
 
 if [ ! -d /tmp/Netpips.Server ]; then
+    echo "Cloning repo"
     git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server
 fi
-source ~/.bashrc
+
 cd /tmp/Netpips.Server/Netpips
 git pull
 git checkout $BRANCH
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
+source ~/.netpipsvarenv.sh
 dotnet ef database update
 dotnet publish -c 'Release' -o '/var/netpips/server'
 sudo service $srvc start
