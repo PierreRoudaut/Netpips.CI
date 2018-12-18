@@ -1,6 +1,7 @@
 server {
 
         listen 80;
+	server_name {{host}} www.{{host}};
 
         location /api/ {
                 proxy_pass http://localhost:5000;

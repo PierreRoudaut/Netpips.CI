@@ -2,6 +2,11 @@
 
 script_name=`basename "$0"`
 
+if [[ "$USER" != 'root' ]]; then
+    echo "./$script_name must be run as root user"
+    exit 1
+fi
+
 if [ "$#" -ne 2 ]; then
     echo "./$script_name [USER] [PASSWORD]"
     exit 1
