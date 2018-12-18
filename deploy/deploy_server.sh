@@ -19,6 +19,7 @@ srvc='netpips-server'
 if [ ! -d /tmp/Netpips.Server ]; then
     git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server
 fi
+source ~/.bashrc
 cd /tmp/Netpips.Server/Netpips
 git pull
 git checkout $BRANCH
