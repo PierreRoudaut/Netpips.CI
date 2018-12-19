@@ -42,5 +42,6 @@ fi
 
 certbot --nginx --domains $host --non-interactive --agree-tos -m $email
 nginx -s reload || true
+systemctl daemon-reload
 service nginx status
 service netpips-server restart || true
