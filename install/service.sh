@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 echo "Installing netpips-server as a service"
 script_name=`basename "$0"`
 if [ "$#" -ne 2 ]; then

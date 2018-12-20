@@ -2,8 +2,8 @@
 
 set -e
 
-if [[ "$USER" != 'netpips-deployment' ]]; then
-    echo "current user ($USER) is not 'netpips-deployment'"
+if [[ "$USER" != 'netpips' ]]; then
+    echo "current user ($USER) is not 'netpips'"
     exit 1
 fi
 
@@ -21,13 +21,18 @@ if [ ! -d /tmp/Netpips.Server ]; then
     git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server
 fi
 
+# Update source
 cd /tmp/Netpips.Server/Netpips
 git pull
 git checkout $BRANCH
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
-source ~/.netpipsvarenv.sh
-dotnet ef database update
+
+# Update database schema
+#source ~/.netpipsvarenv
+#dotnet ef database update
+
+# Deploy
 dotnet publish -c 'Release' -o '/var/netpips/server'
 sudo service $srvc start
 sudo service $srvc status
