@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Installing netpips-server as a service"
 script_name=`basename "$0"`
 if [ "$#" -ne 2 ]; then
     echo "./$script_name [RUNAS_USER] [ASPNETCORE_ENV] (Development | Staging | Production)"
@@ -17,4 +18,4 @@ systemctl daemon-reload
 systemctl enable $srvc.service
 service $srvc start
 service $srvc status
-
+echo "done"

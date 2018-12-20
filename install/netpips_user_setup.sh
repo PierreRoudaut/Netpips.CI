@@ -15,23 +15,26 @@ fi
 user=$1
 password=$2
 
+# Create user
 adduser --disabled-password --gecos "" $user
 if [ "$?" -eq 0 ]; then
     echo "$user:$password" | chpasswd
 fi
 
-# Create working directories
-cp .torrent_done.sh /home/$user/
-mkdir -p /home/$user/downloads
-mkdir -p /home/$user/logs
+# Torrent done sceipt
+cp '.torrent_done.sh' /home/$user/
+chmod 777 /home/$user/'.torrent_done.sh'
+chown "$user:$user" /home/$user/'.torrent_done.sh'
 
-mkdir -p /home/$user/medialibrary
-mkdir -p /home/$user/medialibrary/TV\ Shows
-mkdir -p /home/$user/medialibrary/Movies
-mkdir -p /home/$user/medialibrary/Others
-mkdir -p /home/$user/medialibrary/Music
-mkdir -p /home/$user/medialibrary/Podcasts
+# Create directories
+mkdir -m666 -p /home/$user/downloads
+mkdir -m666 -p /home/$user/logs
 
-chmod 777 -R /home/$user
+mkdir -m666 -p /home/$user/medialibrary
+mkdir -m666 -p /home/$user/medialibrary/TV\ Shows
+mkdir -m666 -p /home/$user/medialibrary/Movies
+mkdir -m666 -p /home/$user/medialibrary/Others
+mkdir -m666 -p /home/$user/medialibrary/Music
+mkdir -m666 -p /home/$user/medialibrary/Podcasts
+
 chown -R "$user:$user" /home/$user/
-
