@@ -21,6 +21,14 @@ if [ "$?" -eq 0 ]; then
     echo "$user:$password" | chpasswd
 fi
 
+# Netpips as sudo
+usermod -aG sudo netpips
+
+# Allow netpips to run passwordless sudo commands
+# $> visudo
+# Append the following line
+# netpips ALL=(ALL) NOPASSWD: ALL
+
 # Torrent done sceipt
 cp '.torrent_done.sh' /home/$user/
 chmod 777 /home/$user/'.torrent_done.sh'
