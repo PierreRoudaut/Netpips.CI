@@ -51,5 +51,7 @@ mkdir -m666 -p /home/$user/medialibrary/Music
 mkdir -m666 -p /home/$user/medialibrary/Podcasts
 chown -R "$user:$user" /home/$user/
 
-mkdir -m666 -p /var/$user
+mkdir -p /var/$user/server
+mkdir -p /var/$user/client/misc
+echo 'Hello, world !' > /var/$user/client/index.html
 chown -R "$user:$user" /var/$user/

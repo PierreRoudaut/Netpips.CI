@@ -14,6 +14,12 @@ cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 # Service
 ./service.sh
 
+# Dotnet
+./dotnet.sh
+
+# SQL Server
+./sqlserver.sh
+
 # Filebot
 ./filebot.sh
 

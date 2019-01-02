@@ -20,8 +20,8 @@ conf='netpips.conf'
 
 apt-get install -y nginx
 service nginx stop || true
-rm -f /etc/nginx/sites-available/$conf
-rm -f /etc/nginx/sites-enabled/$conf
+rm -f /etc/nginx/sites-available/*
+rm -f /etc/nginx/sites-enabled/*
 
 cat $conf.tmpl | sed s/{{domain}}/$domain/g > /etc/nginx/sites-available/$conf
 ln -s /etc/nginx/sites-available/$conf /etc/nginx/sites-enabled/$conf
@@ -30,7 +30,9 @@ sudo service nginx start
 service nginx status
 
 # [Certbot]
-ex=$(certbot --help)
+set +e
+certbot --help
+set -e
 if [ "$?" -ne 0 ]; then
     sudo apt-get update -y
     sudo apt-get install software-properties-common -y

@@ -62,5 +62,7 @@ assert_eq $(source /home/netpips/.netpipsvarenv ; echo $NETPIPS_Netpips__HomePat
 
 assert_eq $(source /home/netpips/.netpipsvarenv; curl $NETPIPS_Netpips__Domain/api/status 2> /dev/null | jq .ip --raw-output) '127.0.0.1' '/api/status OK'
 
+assert_eq $(source /home/netpips/.netpipsvarenv; curl -sL -w "%{http_code}" $NETPIPS_Netpips__Domain/index.html -o /dev/null) '127.0.0.1' '/index.html OK'
+
 
 # journalctl -fu netpips-server
