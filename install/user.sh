@@ -49,5 +49,7 @@ mkdir -m666 -p /home/$user/medialibrary/Movies
 mkdir -m666 -p /home/$user/medialibrary/Others
 mkdir -m666 -p /home/$user/medialibrary/Music
 mkdir -m666 -p /home/$user/medialibrary/Podcasts
-
 chown -R "$user:$user" /home/$user/
+
+mkdir -m666 -p /var/$user
+chown -R "$user:$user" /var/$user/
