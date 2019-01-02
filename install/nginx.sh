@@ -10,20 +10,20 @@ if [[ "$USER" != 'root' ]]; then
 fi
 
 if [ "$#" -ne 2 ]; then
-    echo "./$script_name [HOST] [CERTBOT_CONTACT_EMAIL]"
+    echo "./$script_name [DOMAIN] [CERTBOT_CONTACT_EMAIL]"
     exit 1
 fi
 
-host=$1
+domain=$1
 email=$2
 conf='netpips.conf'
 
-service netpips-server stop || true
+apt-get install -y nginx
 service nginx stop || true
 rm -f /etc/nginx/sites-available/$conf
 rm -f /etc/nginx/sites-enabled/$conf
 
-cat $conf.tmpl | sed s/{{host}}/$host/g > /etc/nginx/sites-available/$conf
+cat $conf.tmpl | sed s/{{domain}}/$domain/g > /etc/nginx/sites-available/$conf
 ln -s /etc/nginx/sites-available/$conf /etc/nginx/sites-enabled/$conf
 
 sudo service nginx start
@@ -40,8 +40,8 @@ if [ "$?" -ne 0 ]; then
     sudo apt-get install python-certbot-nginx -y
 fi
 
-certbot --nginx --domains $host --non-interactive --agree-tos -m $email
+certbot --nginx --domains $domain --non-interactive --agree-tos -m $email
 nginx -s reload || true
 systemctl daemon-reload
 service nginx status
-service netpips-server restart || true
+

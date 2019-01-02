@@ -1,3 +1,7 @@
 #!/bin/bash
 
-printenv >> /tmp/postinstall.txt
+cd $(dirname "$(readlink -f "$BASH_SOURCE")")
+
+# Packages
+./packages.sh
+

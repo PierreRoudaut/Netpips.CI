@@ -12,6 +12,9 @@ fi
 username=$1
 password=$2
 
+apt-get install -y openjdk-8-jre
+apt-get install -y openjdk-8-jdk
+
 wget -O filebot.deb 'https://app.filebot.net/download.php?type=deb&arch=amd64'
 dpkg -i filebot.deb
 rm -f   filebot.deb

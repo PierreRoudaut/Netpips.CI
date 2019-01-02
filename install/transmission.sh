@@ -2,8 +2,11 @@
 
 set -e
 
-user='netpips'
+apt-get install -y transmission-cli
+apt-get install -y transmission-daemon
+apt-get install -y transmission-common
 
+user='netpips'
 echo "Setting transmission-daemon to run as user: $user"
 service 'transmission-daemon' stop
 sed -i s/debian-transmission/$user/g /etc/init.d/transmission-daemon
