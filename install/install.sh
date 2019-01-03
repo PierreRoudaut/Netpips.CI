@@ -2,26 +2,29 @@
 
 cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 
-# Packages
+# installs various packages
 ./packages.sh
 
-# Netpips user
-## ./user.sh
+# Creates netpips user and sets permissions
+./user.sh 'netpips' '<password>'
 
-# Nginx
-./nginx.sh
+# Install nginx and sets up https using certbot
+./nginx.sh '<domain>' '<certbot_contact_email>'
 
-# Service
-./service.sh
-
-# Dotnet
+# Install dotnet SDK
 ./dotnet.sh
 
-# SQL Server
-./sqlserver.sh
+# Installs mssql-server, sqlcmd, creates database logins and permissions
+./mssql-server.sh '<sa_pwd>' '<netpips_pwd>'
 
-# Filebot
-./filebot.sh
+# Install netpips-server as service
+./netpips-server.sh 'netpips' '<env>' '<netpips_superadmin_email>'
 
-# Transmission
-##./transmission.sh
+# Install filebot and sets up opensub credentials
+./filebot.sh '<opensub_login>' '<opensub_pwd>'
+
+# Install transmission-daemon service and runs it as netpips
+./transmission.sh
+
+# Install plex service
+./plexmediaserver.sh

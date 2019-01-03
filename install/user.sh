@@ -29,7 +29,7 @@ usermod -aG sudo netpips
 # Append the following line
 # netpips ALL=(ALL) NOPASSWD: ALL
 
-# Torrent done sceipt
+# Torrent done script
 cp '.torrent_done.sh' /home/$user/
 chmod 777 /home/$user/'.torrent_done.sh'
 chown "$user:$user" /home/$user/'.torrent_done.sh'
@@ -52,6 +52,6 @@ mkdir -m666 -p /home/$user/medialibrary/Podcasts
 chown -R "$user:$user" /home/$user/
 
 mkdir -p /var/$user/server
-mkdir -p /var/$user/client/misc
+mkdir -p /var/$user/client
 echo 'Hello, world !' > /var/$user/client/index.html
 chown -R "$user:$user" /var/$user/

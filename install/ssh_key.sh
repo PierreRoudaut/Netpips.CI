@@ -1,10 +1,9 @@
 #!/bin/bash
 
 set -e
-if [[ "$USER" != 'netpips' ]]; then
-    echo "current user ($USER) is not 'netpips'"
-    exit 1
-fi
 
-ssh-keygen -m pem
-
+su - netpips -c "rm -rf ~/.ssh"
+su - netpips -c "mkdir -m700 ~/.ssh"
+su - netpips -c "ssh-keygen -f ~/.ssh/circleci -m pem -N ''"
+su - netpips -c "cat ~/.ssh/circleci.pub >> ~/.ssh/authorized_keys"
+su - netpips -c "chmod 640 ~/.ssh/authorized_keys"
