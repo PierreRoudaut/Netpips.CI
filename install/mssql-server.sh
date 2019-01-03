@@ -9,13 +9,14 @@ if [[ "$USER" != 'root' ]]; then
     exit 1
 fi
 
-if [ "$#" -ne 3 ]; then
-    echo "./$script_name [MSSQL_SA_PASSWORD] [NETPIPS_LOGIN_PASSWORD] [NETPIPS_SUPERADMIN_EMAIL]"
+if [ "$#" -ne 2 ]; then
+    echo "./$script_name [MSSQL_SA_PASSWORD] [NETPIPS_LOGIN_PASSWORD]"
     exit 1
 fi
 MSSQL_SA_PASSWORD=$1
 NETPIPS_LOGIN_PASSWORD=$2
 
+# mssql-server
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
 sudo apt-get update
@@ -32,7 +33,8 @@ sudo apt-get update
 sudo ACCEPT_EULA='Y' DEBIAN_FRONTEND=noninteractive apt-get install -y mssql-tools unixodbc-dev
 PATH="$PATH:/opt/mssql-tools/bin"
 
+# database, logins and permissions
 sqlcmd -U sa -P $MSSQL_SA_PASSWORD -Q "CREATE DATABASE netpips"
 sqlcmd -U sa -P $MSSQL_SA_PASSWORD -Q "CREATE LOGIN netpips WITH PASSWORD = '$NETPIPS_LOGIN_PASSWORD', CHECK_EXPIRATION = OFF, CHECK_POLICY = OFF;"
-# db user
-# insert SuperAdmin
+sqlcmd -U sa -P $MSSQL_SA_PASSWORD -Q "USE netpips CREATE USER [app-user] FROM LOGIN netpips WITH DEFAULT_SCHEMA = dbo"
+sqlcmd -U sa -P $MSSQL_SA_PASSWORD -Q "USE netpips EXEC sp_addrolemember 'db_owner', 'app-user'"
