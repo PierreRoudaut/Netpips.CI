@@ -3,7 +3,6 @@ Description=Netpips Server
 
 [Service]
 WorkingDirectory=/var/netpips/server
-EnvironmentFile=/home/netpips/.netpipsvarenv
 ExecStart=/usr/bin/dotnet /var/netpips/server/Netpips.dll
 Restart=always
 RestartSec=60  # Restart service after 60 seconds if dotnet service crashes

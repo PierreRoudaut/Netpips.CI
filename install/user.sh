@@ -34,11 +34,6 @@ cp '.torrent_done.sh' /home/$user/
 chmod 777 /home/$user/'.torrent_done.sh'
 chown "$user:$user" /home/$user/'.torrent_done.sh'
 
-# Var env
-if [ ! -f /home/$user/.netpipsvarenv ]; then
-    touch /home/$user/'.netpipsvarenv'
-fi
-
 # Create directories
 mkdir -m666 -p /home/$user/downloads
 mkdir -m666 -p /home/$user/logs
