@@ -6,10 +6,10 @@ cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 ./packages.sh
 
 # Creates netpips user and sets permissions
-./user.sh 'netpips' '<password>'
+./user.sh '<password>'
 
 # Install nginx and sets up https using certbot
-./nginx.sh '<domain>' '<certbot_contact_email>'
+./nginx.sh '<certbot_contact_email>'
 
 # Install dotnet SDK
 ./dotnet.sh
@@ -18,7 +18,7 @@ cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 ./mssql-server.sh '<sa_pwd>' '<netpips_pwd>'
 
 # Install netpips-server as service
-./netpips-server.sh 'netpips' '<env>' '<netpips_superadmin_email>'
+./netpips-server.sh '<netpips_superadmin_email>'
 
 # Install filebot and sets up opensub credentials
 ./filebot.sh '<opensub_login>' '<opensub_pwd>'

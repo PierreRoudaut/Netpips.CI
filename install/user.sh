@@ -7,13 +7,13 @@ if [[ "$USER" != 'root' ]]; then
     exit 1
 fi
 
-if [ "$#" -ne 2 ]; then
-    echo "./$script_name [USER] [PASSWORD]"
+if [ "$#" -ne 1 ]; then
+    echo "./$script_name [PASSWORD]"
     exit 1
 fi
 
-user=$1
-password=$2
+user='netpips'
+password=$1
 
 # Create user
 adduser --disabled-password --gecos "" $user

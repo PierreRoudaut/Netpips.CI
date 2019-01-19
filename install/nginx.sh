@@ -9,12 +9,12 @@ if [[ "$USER" != 'root' ]]; then
     exit 1
 fi
 
-if [ "$#" -ne 2 ]; then
-    echo "./$script_name [DOMAIN] [CERTBOT_CONTACT_EMAIL]"
+if [ "$#" -ne 1 ]; then
+    echo "./$script_name [CERTBOT_CONTACT_EMAIL]"
     exit 1
 fi
 
-domain=$1
+domain=$DOMAIN
 email=$2
 conf='netpips.conf'
 

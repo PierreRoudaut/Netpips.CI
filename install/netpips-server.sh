@@ -3,14 +3,9 @@
 set -ex
 
 echo "Installing netpips-server as a service"
-script_name=`basename "$0"`
-if [ "$#" -ne 2 ]; then
-    echo "./$script_name [RUNAS_USER] [ASPNETCORE_ENV] (Development | Staging | Production)"
-    exit 1
-fi
 
-user=$1
-env=$2
+user='netpips'
+env=$ASPNETCORE_ENVIRONMENT
 srvc='netpips-server'
 
 systemctl disable $srvc.service || true
