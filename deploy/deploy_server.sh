@@ -7,26 +7,25 @@ if [[ "$USER" != 'netpips' ]]; then
     exit 1
 fi
 
-
 srvc='netpips-server'
 
-if [ ! -d /tmp/Netpips.Server ]; then
+if [ ! -d /shared/Netpips.Server ]; then
     echo "Cloning Netpips.Server"
     git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /shared/Netpips.Server
+    cd /shared/Netpips.Server/Netpips
+else
+    cd /shared/Netpips.Server/Netpips
+    git pull
 fi
 
-# Update source
-cd /shared/Netpips.Server/Netpips
-git pull
-git checkout master
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
 
-# Update database schema
+## Update database schema
 #source ~/.netpipsvarenv
-#dotnet ef database update
+dotnet ef database update
 
-# Deploy
+## Deploy
 dotnet publish -c 'Release' -o '/var/netpips/server'
 sudo service $srvc start
 sudo service $srvc status
