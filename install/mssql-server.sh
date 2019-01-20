@@ -4,12 +4,14 @@ set -e
 
 script_name=`basename "$0"`
 
-if [ "$#" -ne 2 ]; then
-    echo "./$script_name [MSSQL_SA_PASSWORD] [NETPIPS_LOGIN_PASSWORD]"
+if [ "$#" -ne 1 ]; then
+    echo "./$script_name [MSSQL_SA_PASSWORD]"
     exit 1
 fi
 MSSQL_SA_PASSWORD=$1
-NETPIPS_LOGIN_PASSWORD=$2
+
+cs=$(cat /home/netpips/netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json | jq .ConnectionStrings.Default --raw-output)
+NETPIPS_LOGIN_PASSWORD=$(python -c "print '$cs'.split(';')[-1].split('=')[1]")
 
 # mssql-server
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
