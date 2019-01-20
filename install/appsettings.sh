@@ -2,13 +2,11 @@
 
 set -e
 
-script_name=`basename "$0"`
+: "${APPSETTINGS_ID:?APPSETTINGS_ID not set}"
+: "${APPSETTINGS_TEST_ID:?APPSETTINGS_TEST_ID not set}"
 
-if [ "$#" -ne 1 ]; then
-    echo "./$script_name [APPSETTINGS_URL]"
-    exit 1
-fi
+appsettings_url="https://drive.google.com/uc?export=download&id=$APPSETTINGS_ID"
+appsettings_test_url="https://drive.google.com/uc?export=download&id=$APPSETTINGS_TEST_ID"
 
-id=$(echo $1 | grep -oP '(?<='id=')[^;]*')
-url="https://drive.google.com/uc?export=download&id=$id"
-su - netpips -c "cd /home/netpips && curl -L '$url' -O -J"
+su - netpips -c "cd /home/netpips && curl -L '$appsettings_url' -O -J 2> /dev/null"
+su - netpips -c "cd /home/netpips && curl -L '$appsettings_test_url' -O -J 2> /dev/null"

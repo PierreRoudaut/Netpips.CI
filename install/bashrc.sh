@@ -17,3 +17,7 @@ if [ "$?" -ne 0 ]; then
     echo "alias visudo='EDITOR=emacs visudo'" >> ~/.bashrc
 fi
 
+(cat ~/.bashrc | grep 'alias clean=' &> /dev/null)
+if [ "$?" -ne 0 ]; then
+    echo "alias clean='rm -f *~'" >> ~/.bashrc
+fi

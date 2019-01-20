@@ -37,6 +37,9 @@ assert_eq "$?" '0' 'dotnet is installed'
 pgrep -a -u 'netpips' 2> /dev/null | grep 'dotnet' &> /dev/null
 assert_eq "$?" '0' 'dotnet runs as netpips user'
 
+service netpips-server status &> /dev/null
+assert_eq "$?" '0' 'netpips-server service is running'
+
 service transmission-daemon status &> /dev/null
 assert_eq "$?" '0' 'transmission-daemon service is running'
 
@@ -52,18 +55,17 @@ assert_eq "$?" '0' "plex media server service is running"
 service nginx status &> /dev/null
 assert_eq "$?" '0' 'nginx service is running'
 
-service netpips-server status &> /dev/null
-assert_eq "$?" '0' 'netpips-server service is running'
-
 service mssql-server status &> /dev/null
 assert_eq "$?" '0' 'mssql-server service is running'
 
 [ -f /home/netpips/netpips.test.settings.json ]
 assert_eq "$?" '0' 'netpips.test.settings.json exists'
 
+[ -f /home/netpips/netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json ]
+assert_eq "$?" '0' "netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json exists"
+
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/api/status -o /dev/null) '200' "https://$DOMAIN/api/status OK"
 
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/index.html -o /dev/null) '200' "https://$DOMAIN/index.html OK"
 
 
-# journalctl -fu netpips-server

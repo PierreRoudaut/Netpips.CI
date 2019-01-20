@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# - Creates netpips user
+#
+########################
 
 script_name=`basename "$0"`
 
@@ -23,11 +27,6 @@ fi
 
 # Netpips as sudo
 usermod -aG sudo netpips
-
-# Allow netpips to run passwordless sudo commands
-# $> visudo
-# Append the following line
-# netpips ALL=(ALL) NOPASSWD: ALL
 
 # Torrent done script
 cp '.torrent_done.sh' /home/$user/

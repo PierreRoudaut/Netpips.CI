@@ -1,6 +1,7 @@
 #!/bin/bash
-## Installs netpips-server service
-##
+#
+# - Installs netpips-server service
+#
 ##################################
 
 set -exu

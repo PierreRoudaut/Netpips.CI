@@ -3,7 +3,7 @@
 # - Installs transmission-daemon
 # - Sets transmission to run as netpips
 #
-#############
+#########################################
 
 set -e
 
