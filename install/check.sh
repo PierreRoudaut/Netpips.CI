@@ -58,11 +58,12 @@ assert_eq "$?" '0' 'netpips-server service is running'
 service mssql-server status &> /dev/null
 assert_eq "$?" '0' 'mssql-server service is running'
 
-assert_eq $(source /home/netpips/.netpipsvarenv ; echo $NETPIPS_Netpips__HomePath) '/home/netpips' '.netpipsvarenv is properly set'
+[ -f /home/netpips/netpips.test.settings.json ]
+assert_eq "$?" '0' 'netpips.test.settings.json exists'
 
-assert_eq $(source /home/netpips/.netpipsvarenv; curl $NETPIPS_Netpips__Domain/api/status 2> /dev/null | jq .ip --raw-output) '127.0.0.1' '/api/status OK'
+assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/api/status -o /dev/null) '200' "https://$DOMAIN/api/status OK"
 
-assert_eq $(source /home/netpips/.netpipsvarenv; curl -sL -w "%{http_code}" $NETPIPS_Netpips__Domain/index.html -o /dev/null) '127.0.0.1' '/index.html OK'
+assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/index.html -o /dev/null) '200' "https://$DOMAIN/index.html OK"
 
 
 # journalctl -fu netpips-server

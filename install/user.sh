@@ -50,3 +50,5 @@ mkdir -p /var/$user/server
 mkdir -p /var/$user/client
 echo 'Hello, world !' > /var/$user/client/index.html
 chown -R "$user:$user" /var/$user/
+
+echo "user.sh => OK"

@@ -1,7 +1,11 @@
 #!/bin/bash
+#
 # - Installs nginx
 # - Sets up http routes for client and server
+# - Installs certbot
 # - Sets up https on domain
+#
+#############################
 
 set -eu
 
@@ -20,7 +24,7 @@ ln -s /etc/nginx/sites-available/$conf /etc/nginx/sites-enabled/$conf
 sudo service nginx start
 service nginx status
 
-# [Certbot]
+
 set +e
 certbot --help
 set -e
