@@ -3,9 +3,11 @@
 # - Sets up http routes for client and server
 # - Sets up https on domain
 
-set -e
+set -eu
 
 conf='netpips.conf'
+: "${DOMAIN:?DOMAIN not set}"
+: "${CERTBOT_CONTACT_EMAIL:?CERTBOT_CONTACT_EMAIL not set}"
 
 apt-get install -y nginx
 service nginx stop || true
