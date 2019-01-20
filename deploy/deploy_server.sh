@@ -7,24 +7,18 @@ if [[ "$USER" != 'netpips' ]]; then
     exit 1
 fi
 
-script_name=`basename "$0"`
-if [ "$#" -ne 1 ]; then
-    echo "./$script_name [BRANCH]"
-   exit 1
-fi
 
-BRANCH=$1
 srvc='netpips-server'
 
 if [ ! -d /tmp/Netpips.Server ]; then
-    echo "Cloning repo"
-    git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server
+    echo "Cloning Netpips.Server"
+    git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /shared/Netpips.Server
 fi
 
 # Update source
-cd /tmp/Netpips.Server/Netpips
+cd /shared/Netpips.Server/Netpips
 git pull
-git checkout $BRANCH
+git checkout master
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
 

@@ -9,7 +9,7 @@ cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 ./user.sh '<password>'
 
 # Install nginx and sets up https using certbot
-./nginx.sh '<certbot_contact_email>'
+./nginx.sh
 
 # Install dotnet SDK
 ./dotnet.sh

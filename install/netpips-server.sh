@@ -15,9 +15,9 @@ systemctl daemon-reload
 systemctl enable $srvc.service
 service $srvc stop
 
-su - $user -c "git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /tmp/Netpips.Server"
+su - $user -c "git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /shared/Netpips.Server"
 # requires appsettings for connection string
-su - $user -c "cd /tmp/Netpips.Server/Netpips; dotnet restore; dotnet build; dotnet ef database update"
+su - $user -c "cd /shared/Netpips.Server/Netpips; dotnet restore; dotnet build; dotnet ef database update"
 /opt/mssql-tools/bin/sqlcmd -U sa -P $MSSQL_SA_PASSWORD -Q "USE netpips INSERT INTO Users (Id, Email, Role) VALUES ('00000000-0000-0000-0000-000000000000', '', 'SuperAdmin')"
 
 
