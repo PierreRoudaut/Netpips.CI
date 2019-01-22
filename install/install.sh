@@ -20,7 +20,7 @@ exit 0
 # MANUAL
 #########
 
-# >>> README.md, reboot
+# >>> README.md, add global variables, reboot
 
 ./appsettings.sh
 
