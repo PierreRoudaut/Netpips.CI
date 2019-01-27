@@ -27,8 +27,9 @@ service nginx status
 
 set +e
 certbot --help
+res=$?
 set -e
-if [ "$?" -ne 0 ]; then
+if [ "$res" -ne 0 ]; then
     sudo apt-get update -y
     sudo apt-get install software-properties-common -y
     sudo add-apt-repository universe -y

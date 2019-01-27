@@ -36,15 +36,15 @@ chmod 777 /home/$user/'.torrent_done.sh'
 chown "$user:$user" /home/$user/'.torrent_done.sh'
 
 # Create directories
-mkdir -m666 -p /home/$user/downloads
-mkdir -m666 -p /home/$user/logs
+mkdir -m777 -p /home/$user/downloads
+mkdir -m777 -p /home/$user/logs
 
-mkdir -m666 -p /home/$user/medialibrary
-mkdir -m666 -p /home/$user/medialibrary/TV\ Shows
-mkdir -m666 -p /home/$user/medialibrary/Movies
-mkdir -m666 -p /home/$user/medialibrary/Others
-mkdir -m666 -p /home/$user/medialibrary/Music
-mkdir -m666 -p /home/$user/medialibrary/Podcasts
+mkdir -m777 -p /home/$user/medialibrary
+mkdir -m777 -p /home/$user/medialibrary/TV\ Shows
+mkdir -m777 -p /home/$user/medialibrary/Movies
+mkdir -m777 -p /home/$user/medialibrary/Others
+mkdir -m777 -p /home/$user/medialibrary/Music
+mkdir -m777 -p /home/$user/medialibrary/Podcasts
 chown -R "$user:$user" /home/$user/
 
 mkdir -p /var/$user/server
