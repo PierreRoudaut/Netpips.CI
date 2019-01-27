@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 if [[ "$USER" != 'netpips' ]]; then
     echo "current user ($USER) is not 'netpips'"
@@ -19,6 +19,7 @@ else
 fi
 
 dotnet restore
+
 sudo service $srvc stop 2> /dev/null || true
 
 ## Install appsettings
