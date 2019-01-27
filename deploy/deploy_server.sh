@@ -21,8 +21,10 @@ fi
 dotnet restore
 sudo service $srvc stop 2> /dev/null || true
 
+## Install appsettings
+/shared/Netpips.CI/install/appsettings.sh
+
 ## Update database schema
-#source ~/.netpipsvarenv
 dotnet ef database update
 
 ## Deploy
