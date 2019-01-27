@@ -28,6 +28,8 @@ fi
 # Netpips as sudo
 usermod -aG sudo netpips
 
+chown netpips:netpips /shared
+
 # Torrent done script
 cp '.torrent_done.sh' /home/$user/
 chmod 777 /home/$user/'.torrent_done.sh'
