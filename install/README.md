@@ -10,7 +10,12 @@ Run `visudo` and append the following line
 # edit `/etc/environment` and add following variable and reboot
 
 > ASPNETCORE_ENVIRONMENT=
+
 > DOMAIN=
+
 > CERTBOT_CONTACT_EMAIL=
+
 > APPSETTINGS_ID=
+
 > APPSETTINGS_TEST_ID=
+
