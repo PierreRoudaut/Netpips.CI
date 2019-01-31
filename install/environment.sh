@@ -7,6 +7,7 @@ set -ex
 env_url="https://drive.google.com/uc?export=download&id=$ENVIRONMENT_ID"
 
 env=${ASPNETCORE_ENVIRONMENT,}
+
 rm -f /shared/Netpips.PWA/src/environments/environment.$env.settings.json
 
 if [[ "$USER" = 'root' ]]; then
