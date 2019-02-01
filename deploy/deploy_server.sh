@@ -32,4 +32,4 @@ dotnet ef database update
 dotnet publish -c 'Release' -o '/var/netpips/server'
 sudo service $srvc start
 sudo service $srvc status
-date >> /tmp/deployments.log
+date >> /tmp/server_deployments.log
