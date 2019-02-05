@@ -67,3 +67,4 @@ assert_eq "$?" '0' "netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json exists"
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/api/status -o /dev/null) '200' "https://$DOMAIN/api/status 200 OK"
 
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/index.html -o /dev/null) '200' "https://$DOMAIN/index.html 200 OK"
+
