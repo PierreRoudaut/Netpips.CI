@@ -38,7 +38,7 @@ if [ "$res" -ne 0 ]; then
     sudo apt-get install python-certbot-nginx -y
 fi
 
-certbot --nginx --domains $DOMAIN --non-interactive --agree-tos -m $CERTBOT_CONTACT_EMAIL
+certbot --nginx --domains $DOMAIN --non-interactive --redirect --agree-tos -m $CERTBOT_CONTACT_EMAIL
 nginx -s reload || true
 systemctl daemon-reload
 service nginx status
