@@ -21,3 +21,8 @@ fi
 if [ "$?" -ne 0 ]; then
     echo "alias clean='rm -f *~'" >> ~/.bashrc
 fi
+
+(cat ~/.bashrc | grep 'export PS1=' &> /dev/null)
+if [ "$?" -ne 0 ]; then
+    echo "export PS1='$USER@$DOMAIN:# '" >> ~/.bashrc
+fi
