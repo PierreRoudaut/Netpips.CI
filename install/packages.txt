@@ -8,3 +8,4 @@ mediainfo
 tree
 nodejs
 python3
+python3-pip
