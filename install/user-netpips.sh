@@ -4,6 +4,8 @@
 #
 ########################
 
+set -e
+
 script_name=`basename "$0"`
 
 if [ "$#" -ne 1 ]; then
@@ -23,7 +25,6 @@ fi
 # Netpips as sudo
 sudo usermod -aG sudo netpips
 
-sudo chown netpips:netpips /shared
 
 # Torrent done script
 sudo cp '.torrent_done.sh' /home/$user/
