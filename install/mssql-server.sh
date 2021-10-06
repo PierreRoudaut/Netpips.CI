@@ -16,9 +16,9 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
 sudo apt-get update
 sudo apt-get install -y mssql-server
-service mssql-server stop
+sudo service mssql-server stop
 sudo ACCEPT_EULA='Y' MSSQL_PID='Express' MSSQL_SA_PASSWORD=$MSSQL_SA_PASSWORD /opt/mssql/bin/mssql-conf -n setup
-systemctl status mssql-server || true
+sudo systemctl status mssql-server || true
 
 # sqlcmd
 echo "installing sqlcmd"
