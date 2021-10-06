@@ -31,6 +31,15 @@ assert_eq() {
     fi
 }
 
+python_verision=$(python --version)
+assert_eq "$python_verision" 'Python 3.9.5' 'Python 3.9.5 is installed'
+
+nodejs --version &> /dev/null
+assert_eq "$?" '0' 'nodejs is installed'
+
+mediainfo --version &> /dev/null
+assert_eq "$?" '0' 'mediainfo is installed'
+
 dotnet --version &> /dev/null
 assert_eq "$?" '0' 'dotnet is installed'
 
