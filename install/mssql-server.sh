@@ -4,18 +4,16 @@ set -e
 
 script_name=`basename "$0"`
 
-if [ "$#" -ne 1 ]; then
-    echo "./$script_name [MSSQL_SA_PASSWORD]"
+if [ "$#" -ne 2 ]; then
+    echo "./$script_name [MSSQL_SA_PASSWORD] [NETPIPS_LOGIN_PASSWORD]"
     exit 1
 fi
 MSSQL_SA_PASSWORD=$1
-
-cs=$(cat /home/netpips/netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json | jq .ConnectionStrings.Default --raw-output)
-NETPIPS_LOGIN_PASSWORD=$(python -c "print '$cs'.split(';')[-1].split('=')[1]")
+NETPIPS_LOGIN_PASSWORD=$2
 
 # mssql-server
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
+sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
 sudo apt-get update
 sudo apt-get install -y mssql-server
 service mssql-server stop
