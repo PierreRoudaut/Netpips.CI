@@ -22,3 +22,4 @@ rm -f   filebot.deb
 filebot -version
 
 echo -e "$username\n$password" | filebot -script fn:configure
+filebot --license filebot-license.psm
