@@ -63,17 +63,22 @@ assert_eq "$?" '0' "plex media server service is running"
 
 service nginx status &> /dev/null
 assert_eq "$?" '0' 'nginx service is running'
+ipv4=$(hostname -I  | cut -d' ' -f1)
+assert_eq $(curl -sL -w "%{http_code}" http://$ipv4 -o /dev/null) '200' "nginx serving 200 OK on http://$ipv4"
 
 service mssql-server status &> /dev/null
 assert_eq "$?" '0' 'mssql-server service is running'
 
-[ -f /home/netpips/netpips.test.settings.json ]
-assert_eq "$?" '0' 'netpips.test.settings.json exists'
+test_settings_path=/home/netpips/netpips.test.settings.json
+[ -f "$test_settings_path" ]
+assert_eq "$?" '0' "$test_settings_path exists"
 
-[ -f /home/netpips/netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json ]
-assert_eq "$?" '0' "netpips.${ASPNETCORE_ENVIRONMENT,}.settings.json exists"
+prod_settings_path=/home/netpips/netpips.Production.settings.json
+[ -f "$prod_settings_path" ]
+assert_eq "$?" '0' "$prod_settings_path exists"
 
+
+DOMAIN=netpips
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/api/status -o /dev/null) '200' "https://$DOMAIN/api/status 200 OK"
 
 assert_eq $(curl -sL -w "%{http_code}" https://$DOMAIN/index.html -o /dev/null) '200' "https://$DOMAIN/index.html 200 OK"
-
