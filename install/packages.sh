@@ -13,7 +13,7 @@ sudo apt-get install -y tree
 sudo apt-get install -y nodejs
 sudo apt-get install -y python3.9
 sudo apt-get install -y python3-pip
-sudo apt-get install -y python-is-python3
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9
 sudo pip install -U cfscrape
 
 
