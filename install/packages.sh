@@ -12,8 +12,8 @@ sudo apt-get install -y mediainfo
 sudo apt-get install -y tree
 sudo apt-get install -y nodejs
 sudo apt-get install -y python3.9
-sudo apt-get install -y python3-pip
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9
+sudo apt-get install -y python3-pip
 sudo pip install -U cfscrape
 
 
