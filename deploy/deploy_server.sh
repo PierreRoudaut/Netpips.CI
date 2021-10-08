@@ -2,34 +2,27 @@
 
 set -ex
 
+script_name=`basename "$0"`
+
 if [[ "$USER" != 'netpips' ]]; then
     echo "current user ($USER) is not 'netpips'"
     exit 1
 fi
 
-srvc='netpips-server'
-
-if [ ! -d /shared/Netpips.Server ]; then
-    echo "Cloning Netpips.Server"
-    git clone 'https://github.com/PierreRoudaut/Netpips.Server.git' /shared/Netpips.Server
-    cd /shared/Netpips.Server/Netpips
-else
-    cd /shared/Netpips.Server/Netpips
-    git pull
+if [[ "$#" -ne 1 ]]; then
+    echo "./$script_name [VERSION]
+    exit 1
 fi
 
+VERSION=$1
+
+cd ../../Netpips.Server/Netpips
+git pull
+git checkout tags/netpips-server-$VERSION
 dotnet restore
-
-sudo service $srvc stop 2> /dev/null || true
-
-## Install appsettings
-/shared/Netpips.CI/install/appsettings.sh
-
-## Update database schema
+dotnet build
+sudo service netpips-server stop 2> /dev/null || true
 dotnet ef database update
-
-## Deploy
 dotnet publish -c 'Release' -o '/var/netpips/server'
-sudo service $srvc start
-sudo service $srvc status
-date >> /tmp/server_deployments.log
+sudo service netpips-server start
+sudo service netpips-server status
