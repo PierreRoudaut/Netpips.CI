@@ -7,8 +7,7 @@ ExecStart=/usr/bin/dotnet /var/netpips/server/Netpips.dll
 Restart=always
 RestartSec=60  # Restart service after 60 seconds if dotnet service crashes
 SyslogIdentifier=dotnet-example
-User={{user}}
-Environment=ASPNETCORE_ENVIRONMENT={{env}}
+User=netpips
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
 [Install]
