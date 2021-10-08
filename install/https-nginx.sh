@@ -21,4 +21,5 @@ sudo service nginx stop || true
 sudo certbot --nginx --domains $DOMAIN --non-interactive --redirect --agree-tos -m $CERTBOT_CONTACT_EMAIL
 sudo nginx -s reload || true
 sudo systemctl daemon-reload
+sudo service nginx start
 sudo service nginx status
