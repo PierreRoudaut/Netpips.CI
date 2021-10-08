@@ -14,9 +14,6 @@ cd $(dirname "$(readlink -f "$BASH_SOURCE")")
 # Install dotnet SDK
 ./dotnet.sh
 
-# Install cfscrape module globally
-pip install -U cfscrape
-
 exit 0
 
 #########
