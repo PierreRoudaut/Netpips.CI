@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 script_name=`basename "$0"`
 
