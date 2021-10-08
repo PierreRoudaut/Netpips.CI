@@ -10,7 +10,7 @@ if [[ "$USER" != 'netpips' ]]; then
 fi
 
 if [[ "$#" -ne 1 ]]; then
-    echo "./$script_name [VERSION]
+    echo "./$script_name [VERSION]"
     exit 1
 fi
 
