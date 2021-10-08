@@ -22,5 +22,6 @@ sudo killall nginx 2> /dev/null || true
 sudo certbot --nginx --domains $DOMAIN --non-interactive --redirect --agree-tos -m $CERTBOT_CONTACT_EMAIL
 sudo nginx -s reload || true
 sudo systemctl daemon-reload
+sudo killall nginx 2> /dev/null || true
 sudo service nginx start
 sudo service nginx status
