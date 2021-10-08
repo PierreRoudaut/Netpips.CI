@@ -18,6 +18,7 @@ CERTBOT_CONTACT_EMAIL=$2
 
 
 sudo service nginx stop || true
+sudo killall nginx
 sudo certbot --nginx --domains $DOMAIN --non-interactive --redirect --agree-tos -m $CERTBOT_CONTACT_EMAIL
 sudo nginx -s reload || true
 sudo systemctl daemon-reload
