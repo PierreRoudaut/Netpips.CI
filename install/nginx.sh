@@ -21,9 +21,7 @@ if [[ ! -f '/var/netpips/client/index.html' ]]; then
     chown -R netpips:netpips /var/netpips/client
 fi
 
-
-sudo apt-get install -y nginx
-sudo service nginx stop || true
+sudo killall nginx
 sudo rm -f /etc/nginx/sites-available/*
 sudo rm -f /etc/nginx/sites-enabled/*
 
