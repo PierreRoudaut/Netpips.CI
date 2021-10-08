@@ -15,5 +15,6 @@ sudo apt-get install -y python3.9
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9
 sudo apt-get install -y python3-pip
 sudo python3.9 -m pip install cfscrape
+sudo apt-get install -y certbot
 
 git config --global core.editor 'emacs'
