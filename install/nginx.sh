@@ -21,7 +21,7 @@ if [[ ! -f '/var/netpips/client/index.html' ]]; then
     chown -R netpips:netpips /var/netpips/client
 fi
 
-sudo killall nginx || true
+sudo killall nginx 2> /dev/null || true
 sudo rm -f /etc/nginx/sites-available/*
 sudo rm -f /etc/nginx/sites-enabled/*
 
@@ -30,3 +30,4 @@ sudo ln -s /etc/nginx/sites-available/netpips.conf /etc/nginx/sites-enabled/netp
 
 sudo service nginx start
 sudo service nginx status
+sudo nginx -t -c /etc/nginx/sites-enabled/netpips.conf
