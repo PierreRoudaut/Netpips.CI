@@ -17,5 +17,7 @@ sudo apt-get install -y python3-pip
 sudo python3.9 -m pip install cfscrape
 sudo apt-get install -y certbot
 sudo apt-get install -y python3-certbot-nginx
+sudo apt-get install -y nginx
+sudo service nginx stop || true
 
 git config --global core.editor 'emacs'
